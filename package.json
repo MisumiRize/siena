@@ -1,0 +1,17 @@
+{
+  "name": "siena",
+  "version": "0.0.0",
+  "scripts": {
+    "test": "node_modules/.bin/gulp test"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "*",
+    "coffee-script": "*",
+    "gulp": "*",
+    "gulp-load-plugins": "*",
+    "gulp-mocha": "*",
+    "gulp-tsc": "*",
+    "mocha": "*"
+  }
+}
