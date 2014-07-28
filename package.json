@@ -12,6 +12,7 @@
     "gulp-load-plugins": "*",
     "gulp-mocha": "*",
     "gulp-tsc": "*",
-    "mocha": "*"
+    "mocha": "*",
+    "tsd": "*"
   }
 }
