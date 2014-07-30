@@ -1,17 +1,20 @@
 gulp = require "gulp"
 gulpLoadPlugins = require "gulp-load-plugins"
 {tsc, mocha} = gulpLoadPlugins()
+browserify = require "browserify"
+source = require "vinyl-source-stream"
 
 gulp.task "compile", ->
-  gulp.src "./src/*.ts"
-    .pipe tsc module: "amd"
-    .pipe gulp.dest "./"
-
-gulp.task "compile:test", ->
   gulp.src "./test/*.ts"
     .pipe do tsc
     .pipe gulp.dest "./.tmp/"
 
-gulp.task "test", ["compile:test"], ->
+gulp.task "build", ["compile"], ->
+  browserify "./.tmp/src/siena.js", standalone: "Siena"
+    .bundle()
+    .pipe source "siena.js"
+    .pipe gulp.dest "./"
+
+gulp.task "test", ["build"], ->
   gulp.src "./.tmp/test/*.js"
     .pipe do mocha

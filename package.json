@@ -6,13 +6,14 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "browserify": "^5.9.1",
     "chai": "*",
     "coffee-script": "*",
     "gulp": "*",
     "gulp-load-plugins": "*",
     "gulp-mocha": "*",
     "gulp-tsc": "*",
-    "mocha": "*",
-    "tsd": "*"
+    "tsd": "*",
+    "vinyl-source-stream": "^0.1.1"
   }
 }
