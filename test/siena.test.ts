@@ -1,8 +1,7 @@
 /// <reference path="../typings/tsd.d.ts" />
-/// <reference path="../src/siena.ts" />
 
-import chai = require("chai");
-var expect = chai.expect;
+import Chai = require("chai");
+var expect = Chai.expect;
 import Siena = require("../src/siena");
 
 describe("Siena.Controller", () => {

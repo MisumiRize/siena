@@ -1,3 +1,5 @@
+import Rule = require("./rule");
+
 module Siena {
     export class Dispatcher {
         private stash: Array<Route> = [];
@@ -28,14 +30,6 @@ module Siena {
 
     export interface Location {
         pathname: string;
-    }
-
-    class Rule {
-        constructor(private rule: string) { }
-
-        test(path: string): boolean {
-            return new RegExp("^" + this.rule).test(path);
-        }
     }
 
     interface Route {
