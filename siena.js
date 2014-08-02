@@ -45,9 +45,29 @@ module.exports = Siena;
 var Rule = (function () {
     function Rule(rule) {
         this.rule = rule;
+        this.register = [];
+        this.capture = {};
     }
+    Rule.prototype.compile = function () {
+        var rule = this.rule, before = rule;
+        rule = rule.replace(/\/:([^\/]+)/, "/([^/]+)");
+        while (rule != before) {
+            this.register.push(RegExp.$1);
+            before = rule;
+            rule = rule.replace(/\/:([^\/]+)/, "/([^/]+)");
+        }
+        return new RegExp("^" + rule);
+    };
+
     Rule.prototype.test = function (path) {
-        return new RegExp("^" + this.rule).test(path);
+        var match = this.compile().exec(path);
+        if (match == null) {
+            return false;
+        }
+        for (var i = 0, len = this.register.length; i < len; i++) {
+            this.capture[this.register[i]] = match[i + 1];
+        }
+        return true;
     };
     return Rule;
 })();
