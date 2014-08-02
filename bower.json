@@ -1,0 +1,23 @@
+{
+  "name": "siena",
+  "main": "siena.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/MisumiRize/siena",
+  "authors": [
+    "Misumi Rize <r@ayase-e.li>"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "router"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
