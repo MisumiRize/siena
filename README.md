@@ -1,4 +1,4 @@
-siena [![Build Status](https://travis-ci.org/MisumiRize/siena.svg?branch=master)](https://travis-ci.org/MisumiRize/siena)
+Siena [![Build Status](https://travis-ci.org/MisumiRize/siena.svg?branch=master)](https://travis-ci.org/MisumiRize/siena)
 =====
 
 Siena is class-based micro router for client.
@@ -11,6 +11,12 @@ Siena is designed to reduce complexity of legacy JavaScript (old-type, such as i
 * Flexible (adapted to other framework or module)
 * Simple (easy to modify)
 * Object-Oriented (like web framework)
+
+## Install
+
+```
+bower install siena
+```
 
 ## Usage
 

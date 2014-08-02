@@ -1,7 +1,8 @@
 {
   "name": "siena",
+  "description": "Class-based micro router for client",
   "main": "siena.js",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "homepage": "https://github.com/MisumiRize/siena",
   "authors": [
     "Misumi Rize <r@ayase-e.li>"
