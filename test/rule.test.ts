@@ -10,7 +10,7 @@ describe("Rule", () => {
     });
 
     it("can be initialized with rule RegExp", () => {
-        expect(new Rule(/\foo/)).not.to.be.null;
+        expect(new Rule(/\/foo/)).not.to.be.null;
     });
 
     describe("compile()", () => {
