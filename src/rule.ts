@@ -1,10 +1,24 @@
 class Rule {
+    private rule: string;
+    private pattern: RegExp;
     private register: Array<string> = [];
     capture: { [key: string]: string } = {};
 
-    constructor(private rule: string) { }
+    constructor(rule: string);
+    constructor(rule: RegExp);
+    constructor(rule: any) {
+        if (typeof rule == "string" || rule instanceof String) {
+            this.rule = rule;
+        } 
+        if (rule instanceof RegExp) {
+            this.pattern = rule;
+        }
+    }
 
     compile(): RegExp {
+        if (this.pattern) {
+            return this.pattern;
+        }
         var rule = this.rule,
             before = rule;
         rule = rule.replace(/\/:([^\/]+)/, "/([^/]+)");
@@ -13,7 +27,8 @@ class Rule {
             before = rule;
             rule = rule.replace(/\/:([^\/]+)/, "/([^/]+)");
         }
-        return new RegExp("^" + rule);
+        this.pattern = new RegExp("^" + rule);
+        return this.pattern;
     }
 
     test(path: string): boolean {

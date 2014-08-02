@@ -50,11 +50,19 @@ module.exports = Siena;
 },{"./rule":2}],2:[function(require,module,exports){
 var Rule = (function () {
     function Rule(rule) {
-        this.rule = rule;
         this.register = [];
         this.capture = {};
+        if (typeof rule == "string" || rule instanceof String) {
+            this.rule = rule;
+        }
+        if (rule instanceof RegExp) {
+            this.pattern = rule;
+        }
     }
     Rule.prototype.compile = function () {
+        if (this.pattern) {
+            return this.pattern;
+        }
         var rule = this.rule, before = rule;
         rule = rule.replace(/\/:([^\/]+)/, "/([^/]+)");
         while (rule != before) {
@@ -62,7 +70,8 @@ var Rule = (function () {
             before = rule;
             rule = rule.replace(/\/:([^\/]+)/, "/([^/]+)");
         }
-        return new RegExp("^" + rule);
+        this.pattern = new RegExp("^" + rule);
+        return this.pattern;
     };
 
     Rule.prototype.test = function (path) {

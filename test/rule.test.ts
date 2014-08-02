@@ -9,6 +9,10 @@ describe("Rule", () => {
         expect(new Rule("/foo")).not.to.be.null;
     });
 
+    it("can be initialized with rule RegExp", () => {
+        expect(new Rule(/\foo/)).not.to.be.null;
+    });
+
     describe("compile()", () => {
         it("returns compiled RegExp", () => {
             expect(new Rule("/foo").compile().toString()).to.be.equal("/^/foo/");
@@ -29,6 +33,13 @@ describe("Rule", () => {
             expect(r.compile().toString()).to.be.equal("/^/foo/([^/]+)/([^/]+)/");
             expect((<any>r).register[0]).to.be.equal("id");
             expect((<any>r).register[1]).to.be.equal("action");
+        });
+
+        it("calls compiling once", () => {
+            var r = new Rule("/foo/:id/:action");
+            r.compile();
+            expect(r.compile().toString()).to.be.equal("/^/foo/([^/]+)/([^/]+)/");
+            expect((<any>r).register.length).to.be.equal(2);
         });
     });
 

@@ -25,7 +25,7 @@ export class TestController extends Siena.Controller {
 }
 
 describe("Siena.Dispatcher", () => {
-    describe("disparch()", () => {
+    describe("dispatch()", () => {
         it("dispatches based on the route", (done) => {
             TestController.dispatched = () => {
                 done();
