@@ -15,11 +15,17 @@ module Siena {
             location = (location == null) ? this.location : location;
             for (var i = 0, len = this.stash.length; i < len; i++) {
                 var rule = this.stash[i].rule;
-                var controller = this.stash[i].controllerName;
-                if (rule.test(location.pathname)) {
-                    new controller().run(rule.capture);
-                    return;
+                var controllerName = this.stash[i].controllerName;
+                if (!rule.test(location.pathname)) {
+                    continue;
                 }
+                var controller = new controllerName();
+                if (rule.capture["action"]) {
+                    controller[rule.capture["action"]].call(controller, rule.capture);
+                } else {
+                    controller.run(rule.capture);
+                }
+                return;
             }
         }
     }

@@ -13,9 +13,14 @@ describe("Siena.Controller", () => {
 
 export class TestController extends Siena.Controller {
     static dispatched: Function;
+    static otherDispatched: Function;
 
     run(param) {
         TestController.dispatched(param);
+    }
+
+    other(param: {[key: string]: string}): void {
+        TestController.otherDispatched(param);
     }
 }
 
@@ -66,6 +71,15 @@ describe("Siena.Dispatcher", () => {
             };
             new Siena.Dispatcher({pathname: "/foo/123"})
                 .addRoute("/foo/:id", TestController)
+                .dispatch();
+        });
+
+        it("dispatches to the action method", (done) => {
+            TestController.otherDispatched = () => {
+                done();
+            };
+            new Siena.Dispatcher({pathname: "/foo/other"})
+                .addRoute("/foo/:action", TestController)
                 .dispatch();
         });
     });
