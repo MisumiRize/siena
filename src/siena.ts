@@ -17,7 +17,7 @@ module Siena {
                 var rule = this.stash[i].rule;
                 var controller = this.stash[i].controllerName;
                 if (rule.test(location.pathname)) {
-                    new controller().run();
+                    new controller().run(rule.capture);
                     return;
                 }
             }
@@ -25,7 +25,7 @@ module Siena {
     }
 
     export class Controller {
-        run(): void { }
+        run(params: { [key: string]: string }): void { }
     }
 
     export interface Location {

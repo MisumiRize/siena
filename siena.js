@@ -20,7 +20,7 @@ var Siena;
                 var rule = this.stash[i].rule;
                 var controller = this.stash[i].controllerName;
                 if (rule.test(location.pathname)) {
-                    new controller().run();
+                    new controller().run(rule.capture);
                     return;
                 }
             }
@@ -32,7 +32,7 @@ var Siena;
     var Controller = (function () {
         function Controller() {
         }
-        Controller.prototype.run = function () {
+        Controller.prototype.run = function (params) {
         };
         return Controller;
     })();
