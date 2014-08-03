@@ -26,9 +26,9 @@ bower install siena
 class MyController extends Siena.Controller
   run: (param) ->
     $(".dom").click () ->
-      someLegacyFunction();
+      someLegacyFunction()
 
-new Siena.Dispatcher
+new Siena.Dispatcher window.location
   .addRoute "/foo", MyController
   .addRoute /\/bar/, MyController
   .dispatch()
@@ -39,7 +39,7 @@ Routing by RegExp is also available.
 ### Placeholder
 
 ```coffee
-new Siena.Dispatcher
+new Siena.Dispatcher window.location
   .addRoute "/foo/:id", MyController
   .dispatch()
 ```
@@ -53,7 +53,7 @@ class MyController extends Siena.Controller
   bar: (param) ->
   baz: (param) ->
 
-new Siena.Dispatcher
+new Siena.Dispatcher window.location
   .addRoute "/foo/:action", MyController
   .dispatch()
 end
